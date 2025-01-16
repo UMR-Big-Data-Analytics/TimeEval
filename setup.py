@@ -120,12 +120,14 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
-            "Programming Language :: Python :: 3.11"
+            "Programming Language :: Python :: 3.11",
+            "Programming Language :: Python :: 3.12",
+            "Programming Language :: Python :: 3.13"
         ],
         packages=find_packages(exclude=("tests", "tests.*")),
         package_data={"timeeval": ["py.typed"], "timeeval_experiments": ["py.typed"]},
         install_requires=load_dependencies(),
-        python_requires=">=3.7, <=3.11",
+        python_requires=">=3.7, <=3.13",
         test_suite="tests",
         cmdclass={
             "test": PyTestCommand,
