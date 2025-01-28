@@ -105,9 +105,10 @@ class RangeAucMetric(Metric, ABC):
             existence_reward = [np.sum(product[s:e + 1]) > 0 for s, e in anomalies]
             existence_reward = np.sum(existence_reward) / anomalies.shape[0]
 
-            recall = min(tp / p, 1) * existence_reward  # = tpr
-            fpr = min(fp / n, 1)
-            precision = tp / np.sum(y_pred)
+            recall = min(tp / p if p > 0 else 0, 1) * existence_reward  # Safeguarded recall
+            fpr = min(fp / n if n > 0 else 0, 1)  # Safeguarded FPR
+            precision = tp / np.sum(y_pred) if np.sum(y_pred) > 0 else 0  # Safeguarded precision
+
 
             recalls[i + 1] = recall
             fprs[i + 1] = fpr
